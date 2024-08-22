@@ -39,7 +39,13 @@ void verifyChain(){
     while (curr)
     {
         printf("%d\t[%d]\t",count++,curr->blockData);
-        hashPrinter(SHA256)
+        hashPrinter(SHA256(toString(*prev),sizeof(*prev),NULL),SHA256_192_DIGEST_LENGTH);
+        printf(" - ");
+        hashPrinter(curr->prevHash,SHA256_192_DIGEST_LENGTH);
+        if(hashCompare(SHA256(toString(*prev),sizeof(*prev),NULL),curr->prevHash))
+            printf("Chain is valid\n");
+        else
+            printf("Imposter");
     }
     
 }
