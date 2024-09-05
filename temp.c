@@ -14,7 +14,7 @@ int main() {
         printf(">>> ");
         scanf("%s", command);
 
-        if (strcmp(command, "execute_blockchain") == 0) {
+        if (strcmp(command, "LetsRock") == 0) {
             system("gcc blockChain.c -o blockChain.o -lcrypto");
             system("./blockChain.o");
         }
