@@ -28,22 +28,27 @@ void printAllBlocks();
 
 //src and dest sre of type unsigned char pointer (*)
 
-void addBlock(int data){
-    if (head==NULL)
-    {
-        head=malloc(sizeof(struct block));
-        SHA256("",sizeof(""),head->prevHash);
-        head->blockData = data;
-    }
-    struct block *currentBlock = head;
-    while(currentBlock->link)
-        currentBlock = currentBlock->link;
+void addBlock(int data) {
     struct block *newBlock = malloc(sizeof(struct block));
-    currentBlock->link = newBlock;
-    newBlock->blockData = data;
-    SHA256(toString(*currentBlock),sizeof(*currentBlock),newBlock->prevHash);
-}
+    if (newBlock == NULL) {
+        printf("Memory allocation failed.\n");
+        return;
+    }
 
+    newBlock->blockData = data;
+
+    if (head == NULL) {
+        head = newBlock;
+        SHA256("", 0, newBlock->prevHash); // Initialize prevHash to the empty string
+    } else {
+        struct block *currentBlock = head;
+        while (currentBlock->link != NULL) {
+            currentBlock = currentBlock->link;
+        }
+        currentBlock->link = newBlock;
+        SHA256(toString(*currentBlock), sizeof(*currentBlock), newBlock->prevHash);
+    }
+}
 void verifyChain(){
     if(head == NULL){
         printf("Hey Idiot if you want to verify chain make sure you created atleast single block\n");
@@ -166,39 +171,48 @@ void main()
 {
 	int c,n,r;
 	printf("1)addBlock\n2)add n random Blocks\n3)alterNthBlock\n4)print All Block\n5)verifyChain\n6)hackChain\n7)exit\n");
-	while(1)
-	{
-		printf("Choice: ");
-		scanf("%d",&c);
-		if (c == 1) {
-    printf("Enter data: ");
-    scanf("%d", &n);
-    addBlock(n);
-} else if (c == 2) {
-    printf("How many blocks to enter? : ");
-    scanf("%d", &n);
-    for (int i = 0; i < n; i++) {
-        r = rand() % (n * 10);
-        printf("Entering: %d\n", r);
-        addBlock(r);
+	while (1) {
+        printf("Choice: ");
+        scanf("%d", &c);
+
+        switch (c) {
+            case 1:
+                printf("Enter data: ");
+                scanf("%d", &n);
+                addBlock(n);
+                break;
+            case 2:
+                printf("How many blocks to enter? : ");
+                scanf("%d", &n);
+                for (int i = 0; i < n; i++) {
+                    r = rand() % (n * 10);
+                    printf("Entering: %d\n", r);
+                    addBlock(r);
+                }
+                break;
+            case 3:
+                printf("Which block to alter? : ");
+                scanf("%d", &n);
+                printf("Enter Value: ");
+                scanf("%d", &r);
+                alterNthBlock(n, r);
+                break;
+            case 4:
+                printAllBlocks();
+
+                break;
+            case 5:
+                verifyChain();
+                break;
+            case 6:
+                hackChain();
+                break;
+
+            case 7:
+                exit(1);
+            default:
+                printf("Wrong Choice\n");
+                break;
+        }
     }
-} else if (c == 3) {
-    printf("Which block to alter? : ");
-    scanf("%d", &n);
-    printf("Enter Value: ");
-    scanf("%d", &r);
-    alterNthBlock(n, r);
-} else if (c == 4) {
-    printAllBlocks();
-} else if (c == 5) {
-    verifyChain();
-} else if (c == 6) {
-    hackChain();
-}else if(c==7){
-	exit(1);
-}else {
-    printf("Wrong Choice\n");
-}
-	}
-	// return 0;
 }

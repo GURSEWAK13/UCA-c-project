@@ -3,24 +3,23 @@
 #include <string.h>
 #include <ctype.h>
 #include <math.h>
+// #include <unistd.h>
 #include <time.h>
 #include "./header/terminal.h"
 
 int main(){
 
     char a[100];
-
-    printf("Lets Try Something Different\n\n");
-
     dt();
     printf("Welcome To My Hood\n");
     printf("Its my own custom Implementation of Terminal\n");
     printf("If you want to run blockchain localy type this command ----> LetsRock\n");
     printf("Type \"help\" for more things!\n\n");
-
+    char cwd[1024];
     while(1){
-
+    printf("\033[37m");
     printf(">>> ");
+    printf("\033[0m");
     fflush(stdin);
     scanf("%s", a);
 

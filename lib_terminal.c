@@ -4,13 +4,11 @@
 #include <ctype.h>
 #include <math.h>
 #include <time.h>
-void read(){
-
+void read() {
     char a[100];
-
     printf("Use .txt or any other extension to read\nEx: hello.txt\n\n");
 
-    system("COLOR 57");
+    printf("\033[1;34m");
 
     FILE *p;
 
@@ -23,17 +21,15 @@ void read(){
 
     p = fopen(a, "r");
 
-    if(p == NULL){
-        printf("\nError\n");
+    if (p == NULL) {
+        printf("\nError: File '%s' not found.\n", a);
+        return;
     }
 
     printf("\n");
 
-    c = fgetc(p);
-
-    while(c != EOF){
+    while ((c = fgetc(p)) != EOF) {
         printf("%c", c);
-        c = fgetc(p);
     }
 
     printf(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
@@ -41,16 +37,14 @@ void read(){
     fclose(p);
 
     printf("\n\n Successfully Read\n");
-
 }
-
 void write(){
 
     char a[100];
 
     printf("Use .txt or any other extension to write\nEx: hello.txt\n\n");
 
-    system("COLOR 37");
+    printf("\033[31m");
 
         FILE *p;
 
@@ -90,7 +84,7 @@ void append(){
 
     printf("Use .txt or any other extension to append\nEx: hello.txt\n\n");
 
-system("COLOR 87");
+printf("\033[31m");
 
         FILE *p;
 
@@ -128,7 +122,7 @@ system("COLOR 87");
 
 void clear(){
     system("cls");
-    system("COLOR 07");
+    printf("\033[0m"); 
 }
 
 void dt(){
@@ -137,7 +131,7 @@ void dt(){
 }
 
 void startscreen(){
-    system("cls");
+    system("clear");
     printf("Demon Terminal\n\n");
 
     dt();
@@ -183,16 +177,28 @@ void renames(){
 
 }
 
-void edit(){
+#include <stdio.h>
+#include <stdlib.h>
+
+void edit() {
     char a[100];
     printf("Warning: Close the editor to use DEMON Terminal\n");
     printf("Use .txt or any other extension to edit\nEx: hello.txt\n\n");
     printf("Enter file name to edit: ");
-    scanf("%s", a);
+    scanf("%99s", a); // Limit input to avoid buffer overflow
 
-    system(a);
+    // Construct the command to open the editor with the specified file
+    char command[150]; // Buffer for the command
+    snprintf(command, sizeof(command), "nano %s", a); // Using nano as the editor
 
-    printf("Successfully opened editing software\n");
+    // Execute the command
+    int result = system(command);
+
+    if (result == -1) {
+        printf("Error: Unable to open the editor.\n");
+    } else {
+        printf("Successfully opened editing software\n");
+    }
 }
 
 void cdir(){
