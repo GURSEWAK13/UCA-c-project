@@ -40,10 +40,6 @@ To Build it from scratch
   make Build from scratch
 ```
 
-```bash
-  make Wakanda Forever
-```
-
 To run blockchain 
 
 ```bash
