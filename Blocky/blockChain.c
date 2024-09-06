@@ -165,48 +165,40 @@ void printAllBlocks()
 void main()
 {
 	int c,n,r;
-	printf("1)addBlock\n2)add n random Blocks\n3)alterNthBlock\n4)print All Block\n5)verifyChain\n6)hackChain\n");
+	printf("1)addBlock\n2)add n random Blocks\n3)alterNthBlock\n4)print All Block\n5)verifyChain\n6)hackChain\n7)exit\n");
 	while(1)
 	{
 		printf("Choice: ");
 		scanf("%d",&c);
-		switch(c)
-		{
-			case 1:
-				printf("Enter data: ");
-				scanf("%d",&n);
-				addBlock(n);
-				break;
-			case 2:
-				printf("How many blocks to enter ?  : ");
-				scanf("%d",&n);
-				for(int i=0;i<n;i++)
-				{
-					r=rand()%(n*10);
-					printf("Entering: %d\n",r);
-					addBlock(r);
-				}
-				break;
-			case 3:
-				printf("Which block to alter ?  : ");
-				scanf("%d",&n);
-				printf("Enter Value : ");
-				scanf("%d",&r);
-				alterNthBlock(n,r);
-				break;
-			case 4:
-				printAllBlocks();
-				break;
-			case 5:
-				verifyChain();
-				break;
-			case 6:
-				hackChain();
-				break;
-			default:
-				printf("Wrong Choise Nigga\n");
-				break;
-		}
+		if (c == 1) {
+    printf("Enter data: ");
+    scanf("%d", &n);
+    addBlock(n);
+} else if (c == 2) {
+    printf("How many blocks to enter? : ");
+    scanf("%d", &n);
+    for (int i = 0; i < n; i++) {
+        r = rand() % (n * 10);
+        printf("Entering: %d\n", r);
+        addBlock(r);
+    }
+} else if (c == 3) {
+    printf("Which block to alter? : ");
+    scanf("%d", &n);
+    printf("Enter Value: ");
+    scanf("%d", &r);
+    alterNthBlock(n, r);
+} else if (c == 4) {
+    printAllBlocks();
+} else if (c == 5) {
+    verifyChain();
+} else if (c == 6) {
+    hackChain();
+}else if(c==7){
+	exit(1);
+}else {
+    printf("Wrong Choice\n");
+}
 	}
 	// return 0;
 }

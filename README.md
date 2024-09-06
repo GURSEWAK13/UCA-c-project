@@ -14,7 +14,28 @@ University  Coding Academy Project by ( Gursewak singh )
 
 ## Adding a Plot twist
 Running blockchain on custom made TERMINAL 
-
+### some basic functions present in terminal
+```bash
+void read();
+void write();
+void append();
+void clear();
+void help();
+void dt();
+void exits();
+void startscreen();
+void removes();
+void renames();
+void edit();
+void cdir();
+void copy();
+void cknow();
+void lknow();
+void ccount();
+void gcd();
+void lcm();
+void tconv();
+```
 
 ## Run Locally
 
