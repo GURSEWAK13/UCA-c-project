@@ -1,4 +1,4 @@
-
+// Some basic implement of terminal commands
 void read();
 void write();
 void append();

@@ -4,16 +4,18 @@
 #include <ctype.h>
 #include <math.h>
 #include <time.h>
-#include "terminal.h"
+#include "./header/terminal.h"
 
 int main(){
 
     char a[100];
 
-    printf("Nikhil's Terminal\n\n");
+    printf("Lets Try Something Different\n\n");
 
     dt();
-    printf("Welcome To Nikhil's Terminal\n");
+    printf("Welcome To My Hood\n");
+    printf("Its my own custom Implementation of Terminal\n");
+    printf("If you want to run blockchain localy type this command ----> LetsRock\n");
     printf("Type \"help\" for more things!\n\n");
 
     while(1){
@@ -99,10 +101,10 @@ int main(){
         exits();
 
     }else if (strcmp(a, "LetsRock") == 0) {
-            system("gcc blockChain.c -o blockChain.o -lcrypto");
-            system("./blockChain.o");
+            system("gcc ./Blocky/blockChain.c -o ./output/blockChain.o -lcrypto");
+            system("./output/blockChain.o");
     }else{
-        printf("Enter only stated things in help\n");
+        printf("Oooh i think you typed somthing wrong\n");
     }
     
 

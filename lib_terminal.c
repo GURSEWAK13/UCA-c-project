@@ -441,8 +441,9 @@ void help(){
     printf("gcd    >>> To perform GCD of numbers\n");
     printf("lcm    >>> To perform LCM of numbers\n");
     printf("tconv  >>> To convert temperatures\n");
-
-
+    printf(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n");
+    printf("LetsRock >>>> For Running BlockChain\n");
+    printf(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n");
     printf("exit   >>> To exit\n");
     printf("\n");
 }
